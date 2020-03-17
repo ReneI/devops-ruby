@@ -1,0 +1,30 @@
+
+  nexus:
+    image: sonatype/nexus3
+    container_name: nexus
+    volumes:
+      - "nexus-data:/nexus-data"
+    ports:
+      - "8081:8081"
+    expose:
+      - "8081"
+
+  sonarqube:
+    image: sonarqube
+    container_name: sonarqube
+    ports:
+      - "9000:22"
+    environment:
+      - sonar.jdbc.url=jdbc:postgresql://db:5432/sonar
+    volumes:
+      - sonarqube_conf:/opt/sonarqube/conf
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_extensions:/opt/sonarqube/extensions
+
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_USER=sonar
+      - POSTGRES_PASSWORD=sonar
+    volumes:
+      - postgresql:/var/lib/postgresql 
