@@ -8,7 +8,7 @@ gem 'sinatra'
 gem 'sinatra-contrib'
 
 group :test do
-  gem 'minicube'
+  gem 'minitest'
   gem 'ci_reporter_test_unit'
 end
 PACKAGE_MANIFEST# install packages
