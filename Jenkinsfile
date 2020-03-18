@@ -1,27 +1,39 @@
+
 pipeline {
+         agent any
+         tools {nodejs "fosslinuxnode"}
 
-    agent any
-
-    environment {
-  		PASS = credentials('registry-pass')
-    }
     stages {
+        stage("Code Checkout") {
+            steps {
+                git branch: 'master',
+                credentialsId: 'github',
+                url: 'https://github.com/ReneI/devops-ruby.git'
+                  }
+              }
+         stage('Code Quality') {
+                   steps {
+                       script {
+                          def scannerHome = tool 'SonarQubeScanner';
+                          withSonarQubeEnv("sonarqube") {
+                          sh "${tool("SonarQubeScanner")}/bin/sonar-scanner"
+                                       }
+                               }
+                           }
+                        }
 
+         stage("Install Dependencies") {
+                                  steps {
+                                        sh " echo"
 
-stage('Sonarqube') {
-     steps {
-   
-      def scannerHome = tool 'SonarQubeScanner'
-    
-        withSonarQubeEnv('sonarqube') {
-            sh "${scannerHome}/bin/sonar-scanner"
-        }        timeout(time: 10, unit: 'MINUTES') {
-            waitForQualityGate abortPipeline: true
-        }
-    }
-}
-                             
-     
-    
-    }
-}
+                                       }
+                                }
+
+         stage("unit Test") {
+                            steps {
+                                sh "echo test"
+
+                              }
+                        }
+             }
+     }
