@@ -2,7 +2,7 @@
 pipeline {
          agent any
     stages {
-        stage("Code Checkout") {
+        stage('Code Checkout') {
             steps {
                 git branch: 'master',
                 credentialsId: 'github',
@@ -36,7 +36,7 @@ pipeline {
       }
     }
 
-         stage("unit Test") {
+         stage('unit Test') {
                             steps {
                                 sh "ruby tests.rb> TEST_RESULT.data.xml"
 
