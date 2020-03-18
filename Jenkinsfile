@@ -5,8 +5,6 @@ pipeline {
     environment {
   		PASS = credentials('registry-pass')
     }
-
-
     stages {
 
 
@@ -21,19 +19,7 @@ stage('Sonarqube') {
         }
     }
 }
-        stage('Build') {
-            steps {
-                sh '''
-		
-           
-                    '''   
-            }
-            post {
-                success {
-                }
-            }
-
-        }                        
+                             
      
     
     }
