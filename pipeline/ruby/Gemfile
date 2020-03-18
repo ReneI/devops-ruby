@@ -1,3 +1,15 @@
-source 'https://rubygems.org'
+
+# install bundler 
+gem install bundler# create package manifest
+cat <<-'PACKAGE_MANIFEST' > Gemfile
+source "https://rubygems.org"
 
 gem 'sinatra'
+gem 'sinatra-contrib'
+
+group :test do
+  gem 'minicube'
+  gem 'ci_reporter_test_unit'
+end
+PACKAGE_MANIFEST# install packages
+bundle install
