@@ -20,12 +20,17 @@ pipeline {
                            }
                         }
 
-         stage("Install Dependencies") {
-                                  steps {
-                                        sh " echo"
-
-                                       }
-                                }
+      
+   stage('requirements') {
+      steps {
+        sh 'gem install bundler -v 2.0.1'
+      }
+    }
+    stage('build') {
+      steps {
+        sh 'bundle install'
+      }
+    }
 
          stage("unit Test") {
                             steps {
