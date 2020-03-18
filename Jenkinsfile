@@ -30,7 +30,8 @@ pipeline {
       steps {
         sh 'bundle install'
       }
-    }   stage('lint test ') {
+    }  
+             stage('lint test ') {
       steps {
         sh 'bundle exec rubocop -c config/rubocop.yml --require rubocop/formatter/checkstyle_formatter --format RuboCop::Formatter::CheckstyleFormatter --no-color --rails --out tmp/checkstyle.xml || true'
       }
