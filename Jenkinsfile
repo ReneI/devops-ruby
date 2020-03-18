@@ -1,8 +1,6 @@
 
 pipeline {
          agent any
-         tools {nodejs "fosslinuxnode"}
-
     stages {
         stage("Code Checkout") {
             steps {
